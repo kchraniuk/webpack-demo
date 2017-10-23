@@ -1,7 +1,14 @@
 body {
-  background-color: red;
 
-  p {
-    text-transform: uppercase;
+  .header {
+    background: blue;
+  }
+  .main {
+    background: red;
+  }
+  .footer {
+    background: orange;
   }
 }
+
+// @import 'example.scss';
