@@ -2,12 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const cleanPlugin = new CleanWebpackPlugin(['dist']);
 const extractSASS = new ExtractTextPlugin({
-  filename: '[name].css?[hash]', 
+  filename: '[name].css?[hash]',
   allChunks: true,
   disable: false
 });
-const cleanPlugin = new CleanWebpackPlugin(['dist']);
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -23,7 +23,7 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'src'),
-  },  
+  },
   module: {
     rules: [
       {
@@ -49,8 +49,8 @@ module.exports = {
   },
   devtool: "source-map",
   plugins: [
-    extractSASS,
-    cleanPlugin
+    cleanPlugin,
+    extractSASS
   ],
   watch: true
 };
