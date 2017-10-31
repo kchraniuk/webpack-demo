@@ -1,8 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const cleanPlugin = new CleanWebpackPlugin(['dist']);
+const copyStaticContent = new CopyWebpackPlugin([
+    { from: 'html', to: '../' },
+    { from: 'images', to: 'images' }
+]);
 const extractSASS = new ExtractTextPlugin({
   filename: 'css/app.css',
   allChunks: true,
@@ -11,9 +17,9 @@ const extractSASS = new ExtractTextPlugin({
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: './js/app.js',
+  entry: './scripts/app.js',
   output: {
-    filename: 'javascript/app.js',
+    filename: 'scripts/app.js',
     path: path.join(__dirname, "/dist/assets/"),
     publicPath: "/assets/"
   },
@@ -46,7 +52,8 @@ module.exports = {
   devtool: "source-map",
   plugins: [
     cleanPlugin,
-    extractSASS
+    extractSASS,
+    copyStaticContent
   ],
   watch: true
 };
