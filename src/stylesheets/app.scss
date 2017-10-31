@@ -1,5 +1,8 @@
-body {
+html {
+  touch-action: manipulation;
+}
 
+body {
   .header {
     background: blue;
   }
@@ -11,4 +14,4 @@ body {
   }
 }
 
-// @import 'example.scss';
+@import 'example.scss';

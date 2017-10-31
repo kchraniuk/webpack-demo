@@ -4,22 +4,18 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const cleanPlugin = new CleanWebpackPlugin(['dist']);
 const extractSASS = new ExtractTextPlugin({
-  filename: '[name].css?[hash]',
+  filename: 'css/app.css',
   allChunks: true,
   disable: false
 });
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
-  entry: {
-    'app.js':'./app.js',
-    'assets/css/b': './js/entry-styles.js'
-    // 'assets/css/app.css': './stylesheets/app.scss'
-    // 'assets/css/example.css': './stylesheets/example.scss',
-  },
+  entry: './js/app.js',
   output: {
-    filename: '[name]?[hash]',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'javascript/app.js',
+    path: path.join(__dirname, "/dist/assets/"),
+    publicPath: "/assets/"
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'src'),
